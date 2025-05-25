@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="body-h1">
+    <h1>Графики</h1>
+</div>
+
+<div class="main">
+    <div class="body-container">
+        <div class="two-colomn">
+            {% for graph in graphs %}
+                <div class="column">
+                    <p>Автор: {{ graph.user.username }}, x = {{ graph.x_value }}</p>
+                    <img src="{{ graph.image.url }}" alt="Graph">
+                    {% if user.is_superuser %}
+                        <div class="a-card">
+                            <a href="{% url 'delete_graph' graph.id %}">Удалить</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

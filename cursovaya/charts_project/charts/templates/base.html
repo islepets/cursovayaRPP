@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Графики</title>
+     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <a href="{% url 'index' %}">Главная</a>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="header-center">
+            <p class="welcome-message">Привет, {{ user.username }}!</p>
+        </div>
+        <div class="header-right">
+            <a href="{% url 'personal_area' %}">Личный кабинет</a>
+            <a href="{% url 'logout' %}">Выйти</a>
+        </div>
+        {% else %}
+        <div class="header-right">
+            <a href="{% url 'login' %}">Войти</a>
+            <a href="{% url 'register' %}">Регистрация</a>
+        </div>
+        {% endif %}
+    </header>
+    <hr>
+    {% block content %}{% endblock %}
+     <hr>
+    <footer>
+        <div id="foot-col">
+            <a href="mailto:slepecila@gmail.com">Почта</a>
+            <a href="https://github.com/islepets">GitHub</a>
+            <span id="copy">&#9400 Copyright 2025</span>
+        </div>
+    </footer>
+</body>
+</html>
