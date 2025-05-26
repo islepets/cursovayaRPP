@@ -17,16 +17,14 @@
     </div>
 
     <div class="one-colomn">
-        {% for graph in graphs %}
-            <div class="column">
-                <p>x = {{ graph.x_value }}</p>
-                <img src="{{ graph.image.url }}" alt="Graph">
-                {% if user.is_superuser %}
-                 <div class="a-card">
-                    <a href="{% url 'delete_graph' graph.id %}">Удалить</a>
-                 </div>
-                {% endif %}
+       {% for graph in graphs %}
+        <div class="column">
+            <p>x = {{ graph.x_value }}</p>
+            <img src="data:image/png;base64,{{ graph.plot_data }}" alt="Graph">
+            <div class="a-card">
+                <a href="{% url 'delete_personal_graph' graph.id %}">Удалить</a>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>

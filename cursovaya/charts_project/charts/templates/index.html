@@ -10,7 +10,7 @@
             {% for graph in graphs %}
                 <div class="column">
                     <p>Автор: {{ graph.user.username }}, x = {{ graph.x_value }}</p>
-                    <img src="{{ graph.image.url }}" alt="Graph">
+                    <img src="data:image/png;base64,{{ graph.plot_data }}" alt="Graph">
                     {% if user.is_superuser %}
                         <div class="a-card">
                             <a href="{% url 'delete_graph' graph.id %}">Удалить</a>
